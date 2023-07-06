@@ -73,12 +73,23 @@ class LoginVC: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        
+        
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        
+        
+        
+        emailField.delegate = self
+        passwordField.delegate = self
+        
         
         view.addSubview(scrollView)
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(imageView)
         scrollView.addSubview(loginButton)
+        scrollView.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,13 +100,39 @@ class LoginVC: UIViewController {
         
         
         let size = scrollView.width/3
-        imageView.frame = CGRect(x: (scrollView.width-size)/2, y: scrollView.safeAreaInsets.top+20, width: size, height: size)
+        imageView.frame = CGRect(x: (scrollView.width-size)/2, y: scrollView.safeAreaInsets.top-40, width: size, height: size)
         
-        emailField.frame = CGRect(x: 30, y: imageView.bottom+30, width: scrollView.width-60, height: 40)
+        emailField.frame = CGRect(x: 30, y: imageView.bottom+60, width: scrollView.width-60, height: 40)
         
-        passwordField.frame = CGRect(x: 30, y: emailField.bottom+30, width: scrollView.width-60, height: 40)
+        passwordField.frame = CGRect(x: 30, y: emailField.bottom+20, width: scrollView.width-60, height: 40)
         
-        loginButton.frame = CGRect(x: 30, y: passwordField.bottom+30, width: 80, height: 40)
+        loginButton.frame = CGRect(x: scrollView.width/2-scrollView.width/4, y: passwordField.bottom+40, width: scrollView.width/2, height: 40)
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    @objc func loginButtonTapped() {
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        
+        guard let email = emailField.text, let password = passwordField.text, !email.isEmpty, !password.isEmpty, password.count >= 6 else {
+            alertUserLoginError()
+            return
+        }
+        
+        // Firebase Log in
+        
+        
+    }
+    
+    func alertUserLoginError() {
+        
+        let alert = UIAlertController(title: "Woops!!!", message: "Please enter all information to log in...", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+        present(alert, animated: true)
         
     }
     
@@ -103,5 +140,17 @@ class LoginVC: UIViewController {
         let vc = RegisterVC()
         vc.title = "Create Account"
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension LoginVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailField {
+            passwordField.becomeFirstResponder()
+        }
+        else if textField == passwordField {
+            loginButtonTapped()
+        }
+        return true
     }
 }
