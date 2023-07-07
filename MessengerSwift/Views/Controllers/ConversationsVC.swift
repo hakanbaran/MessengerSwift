@@ -13,6 +13,8 @@ class ConversationsVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .red
         
+        print("Hakan")
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
