@@ -9,21 +9,35 @@
 /* Begin PBXBuildFile section */
 		D47E5EC62A5804AA002C07C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EC52A5804AA002C07C1 /* AppDelegate.swift */; };
 		D47E5EC82A5804AA002C07C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EC72A5804AA002C07C1 /* SceneDelegate.swift */; };
-		D47E5ECA2A5804AA002C07C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EC92A5804AA002C07C1 /* ViewController.swift */; };
+		D47E5ECA2A5804AA002C07C1 /* ConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EC92A5804AA002C07C1 /* ConversationsVC.swift */; };
 		D47E5ECD2A5804AA002C07C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D47E5ECB2A5804AA002C07C1 /* Main.storyboard */; };
 		D47E5ECF2A5804AB002C07C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D47E5ECE2A5804AB002C07C1 /* Assets.xcassets */; };
 		D47E5ED22A5804AB002C07C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D47E5ED02A5804AB002C07C1 /* LaunchScreen.storyboard */; };
+		D47E5EDF2A58068D002C07C1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EDE2A58068D002C07C1 /* Extensions.swift */; };
+		D47E5EE22A5806DA002C07C1 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EE12A5806DA002C07C1 /* ProfileVC.swift */; };
+		D47E5EE42A5806FA002C07C1 /* NewConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EE32A5806FA002C07C1 /* NewConversationsVC.swift */; };
+		D47E5EE62A58070B002C07C1 /* VideoPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EE52A58070B002C07C1 /* VideoPlayerVC.swift */; };
+		D47E5EE82A58071B002C07C1 /* PhotoViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EE72A58071B002C07C1 /* PhotoViewerVC.swift */; };
+		D47E5EEA2A58077C002C07C1 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EE92A58077C002C07C1 /* LoginVC.swift */; };
+		D47E5EEC2A58078A002C07C1 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EEB2A58078A002C07C1 /* RegisterVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D47E5EC22A5804AA002C07C1 /* MessengerSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47E5EC52A5804AA002C07C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D47E5EC72A5804AA002C07C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D47E5EC92A5804AA002C07C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D47E5EC92A5804AA002C07C1 /* ConversationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsVC.swift; sourceTree = "<group>"; };
 		D47E5ECC2A5804AA002C07C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D47E5ECE2A5804AB002C07C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D47E5ED12A5804AB002C07C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D47E5ED32A5804AB002C07C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D47E5EDE2A58068D002C07C1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D47E5EE12A5806DA002C07C1 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		D47E5EE32A5806FA002C07C1 /* NewConversationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationsVC.swift; sourceTree = "<group>"; };
+		D47E5EE52A58070B002C07C1 /* VideoPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerVC.swift; sourceTree = "<group>"; };
+		D47E5EE72A58071B002C07C1 /* PhotoViewerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerVC.swift; sourceTree = "<group>"; };
+		D47E5EE92A58077C002C07C1 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		D47E5EEB2A58078A002C07C1 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +70,62 @@
 		D47E5EC42A5804AA002C07C1 /* MessengerSwift */ = {
 			isa = PBXGroup;
 			children = (
-				D47E5EC52A5804AA002C07C1 /* AppDelegate.swift */,
-				D47E5EC72A5804AA002C07C1 /* SceneDelegate.swift */,
-				D47E5EC92A5804AA002C07C1 /* ViewController.swift */,
-				D47E5ECB2A5804AA002C07C1 /* Main.storyboard */,
+				D47E5ED92A58052A002C07C1 /* Resources */,
+				D47E5EDA2A58053F002C07C1 /* Views */,
 				D47E5ECE2A5804AB002C07C1 /* Assets.xcassets */,
-				D47E5ED02A5804AB002C07C1 /* LaunchScreen.storyboard */,
 				D47E5ED32A5804AB002C07C1 /* Info.plist */,
 			);
 			path = MessengerSwift;
+			sourceTree = "<group>";
+		};
+		D47E5ED92A58052A002C07C1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D47E5EC52A5804AA002C07C1 /* AppDelegate.swift */,
+				D47E5EC72A5804AA002C07C1 /* SceneDelegate.swift */,
+				D47E5EDE2A58068D002C07C1 /* Extensions.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D47E5EDA2A58053F002C07C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D47E5EDD2A58056A002C07C1 /* StoryBoards */,
+				D47E5EDC2A580562002C07C1 /* Controllers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D47E5EDC2A580562002C07C1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D47E5EC92A5804AA002C07C1 /* ConversationsVC.swift */,
+				D47E5EE02A5806C4002C07C1 /* Login */,
+				D47E5EE12A5806DA002C07C1 /* ProfileVC.swift */,
+				D47E5EE32A5806FA002C07C1 /* NewConversationsVC.swift */,
+				D47E5EE52A58070B002C07C1 /* VideoPlayerVC.swift */,
+				D47E5EE72A58071B002C07C1 /* PhotoViewerVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D47E5EDD2A58056A002C07C1 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				D47E5ECB2A5804AA002C07C1 /* Main.storyboard */,
+				D47E5ED02A5804AB002C07C1 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoards;
+			sourceTree = "<group>";
+		};
+		D47E5EE02A5806C4002C07C1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D47E5EE92A58077C002C07C1 /* LoginVC.swift */,
+				D47E5EEB2A58078A002C07C1 /* RegisterVC.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +199,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D47E5ECA2A5804AA002C07C1 /* ViewController.swift in Sources */,
+				D47E5EE62A58070B002C07C1 /* VideoPlayerVC.swift in Sources */,
+				D47E5EE22A5806DA002C07C1 /* ProfileVC.swift in Sources */,
+				D47E5ECA2A5804AA002C07C1 /* ConversationsVC.swift in Sources */,
+				D47E5EE82A58071B002C07C1 /* PhotoViewerVC.swift in Sources */,
 				D47E5EC62A5804AA002C07C1 /* AppDelegate.swift in Sources */,
+				D47E5EEA2A58077C002C07C1 /* LoginVC.swift in Sources */,
 				D47E5EC82A5804AA002C07C1 /* SceneDelegate.swift in Sources */,
+				D47E5EE42A5806FA002C07C1 /* NewConversationsVC.swift in Sources */,
+				D47E5EDF2A58068D002C07C1 /* Extensions.swift in Sources */,
+				D47E5EEC2A58078A002C07C1 /* RegisterVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
