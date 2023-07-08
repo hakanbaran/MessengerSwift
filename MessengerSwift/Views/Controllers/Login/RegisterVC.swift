@@ -176,23 +176,43 @@ class RegisterVC: UIViewController {
         
         // Firebase Register
         
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-            guard let result = authResult, error == nil else {
-                
-                print("Error Var")
+        DatabaseManager.shared.userExists(with: email) { [weak self] exists in
+            
+            guard let strongSelf = self else {
                 return
             }
             
-            let user = result.user
-            print("HakanBARANNNNNN \(user)")
+            guard !exists else {
+                // user already exists
+                
+                self?.alertUserLoginError(message: "")
+                return
+            }
             
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) {  authResult, error in
+                
+                
+                
+                guard authResult != nil, error == nil else {
+                    
+                    print("Error Var")
+                    return
+                }
+                
+                
+                DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName,
+                                                                    lastName: lastName,
+                                                                    emailAddress: email))
+                
+                strongSelf.navigationController?.dismiss(animated: true)
+                
+            }
         }
-        
     }
     
-    func alertUserLoginError() {
+    func alertUserLoginError(message: String = "Please enter all information to create a new account...") {
         
-        let alert = UIAlertController(title: "Woops!!!", message: "Please enter all information to create a new account...", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Woops!!!", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
         present(alert, animated: true)
         
