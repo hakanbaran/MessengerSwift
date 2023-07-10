@@ -14,6 +14,8 @@
 		D450EF5B2A5844820077C1A3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF5A2A5844820077C1A3 /* FirebaseFirestore */; };
 		D450EF5D2A5844820077C1A3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF5C2A5844820077C1A3 /* FirebaseStorage */; };
 		D450EF602A5844F10077C1A3 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF5F2A5844F10077C1A3 /* FirebaseDatabaseSwift */; };
+		D450EF632A5BF5350077C1A3 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF622A5BF5350077C1A3 /* FacebookCore */; };
+		D450EF652A5BF5350077C1A3 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF642A5BF5350077C1A3 /* FacebookLogin */; };
 		D47E5EC62A5804AA002C07C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EC52A5804AA002C07C1 /* AppDelegate.swift */; };
 		D47E5EC82A5804AA002C07C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EC72A5804AA002C07C1 /* SceneDelegate.swift */; };
 		D47E5ECA2A5804AA002C07C1 /* ConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EC92A5804AA002C07C1 /* ConversationsVC.swift */; };
@@ -32,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		D450EF512A583ED00077C1A3 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		D450EF662A5BF8B30077C1A3 /* MessengerSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessengerSwift.entitlements; sourceTree = "<group>"; };
 		D47E5EC22A5804AA002C07C1 /* MessengerSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47E5EC52A5804AA002C07C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D47E5EC72A5804AA002C07C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,8 +58,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D450EF652A5BF5350077C1A3 /* FacebookLogin in Frameworks */,
 				D450EF602A5844F10077C1A3 /* FirebaseDatabaseSwift in Frameworks */,
 				D450EF592A5844820077C1A3 /* FirebaseDatabase in Frameworks */,
+				D450EF632A5BF5350077C1A3 /* FacebookCore in Frameworks */,
 				D450EF5B2A5844820077C1A3 /* FirebaseFirestore in Frameworks */,
 				D450EF552A5844820077C1A3 /* FirebaseAnalytics in Frameworks */,
 				D450EF5D2A5844820077C1A3 /* FirebaseStorage in Frameworks */,
@@ -94,6 +99,7 @@
 		D47E5EC42A5804AA002C07C1 /* MessengerSwift */ = {
 			isa = PBXGroup;
 			children = (
+				D450EF662A5BF8B30077C1A3 /* MessengerSwift.entitlements */,
 				D47E5ED92A58052A002C07C1 /* Resources */,
 				D47E5EDA2A58053F002C07C1 /* Views */,
 				D47E5ECE2A5804AB002C07C1 /* Assets.xcassets */,
@@ -177,6 +183,8 @@
 				D450EF5A2A5844820077C1A3 /* FirebaseFirestore */,
 				D450EF5C2A5844820077C1A3 /* FirebaseStorage */,
 				D450EF5F2A5844F10077C1A3 /* FirebaseDatabaseSwift */,
+				D450EF622A5BF5350077C1A3 /* FacebookCore */,
+				D450EF642A5BF5350077C1A3 /* FacebookLogin */,
 			);
 			productName = MessengerSwift;
 			productReference = D47E5EC22A5804AA002C07C1 /* MessengerSwift.app */;
@@ -208,6 +216,7 @@
 			mainGroup = D47E5EB92A5804AA002C07C1;
 			packageReferences = (
 				D450EF532A5844820077C1A3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D450EF612A5BF5350077C1A3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = D47E5EC32A5804AA002C07C1 /* Products */;
 			projectDirPath = "";
@@ -392,6 +401,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MessengerSwift/MessengerSwift.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 373Z282HAT;
@@ -420,6 +430,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MessengerSwift/MessengerSwift.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 373Z282HAT;
@@ -475,6 +486,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		D450EF612A5BF5350077C1A3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -507,6 +526,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D450EF532A5844820077C1A3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabaseSwift;
+		};
+		D450EF622A5BF5350077C1A3 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D450EF612A5BF5350077C1A3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		D450EF642A5BF5350077C1A3 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D450EF612A5BF5350077C1A3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
