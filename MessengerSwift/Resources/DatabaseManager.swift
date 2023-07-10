@@ -24,8 +24,8 @@ extension DatabaseManager {
     
     public func userExists(with email: String, completion: @escaping ((Bool) -> Void)) {
         
-        var safeEmail = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-//        safeEmail.replacingOccurrences(of: "@", with: "-")
+        var safeEmail = email.replacingOccurrences(of: ".", with: "-")
+        safeEmail.replacingOccurrences(of: "@", with: "-")
         
         
         
@@ -60,8 +60,8 @@ struct ChatAppUser {
     let emailAddress: String
     
     var safeEmail: String {
-        var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
-        safeEmail.replacingOccurrences(of: "@", with: "-")
+        let safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+//        safeEmail.replacingOccurrences(of: "@", with: "-")
         return safeEmail
     }
     
