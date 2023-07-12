@@ -8,8 +8,13 @@
 import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
+import GoogleSignInSwift
+import JGProgressHUD
+
 
 class LoginVC: UIViewController {
+    
+    private let spinner = JGProgressHUD(style: .extraLight)
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -23,7 +28,6 @@ class LoginVC: UIViewController {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    
     
     
     private let emailField: UITextField = {
@@ -85,13 +89,13 @@ class LoginVC: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         
-        
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        
         
         
         emailField.delegate = self
         passwordField.delegate = self
+        
+        
         
         facebookLoginButton.delegate = self
         
@@ -140,12 +144,19 @@ class LoginVC: UIViewController {
             return
         }
         
+        spinner.show(in: view)
+        
         // Firebase Log in
         
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             
+            
             guard let strongSelf = self else {
                 return
+            }
+            
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss()
             }
             
             guard let result = authResult, error == nil else {
@@ -158,8 +169,9 @@ class LoginVC: UIViewController {
             
             strongSelf.navigationController?.dismiss(animated: true)
             
-            
         }
+        
+        
         
         
     }
@@ -177,6 +189,10 @@ class LoginVC: UIViewController {
         vc.title = "Create Account"
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    
+    
 }
 
 extension LoginVC: UITextFieldDelegate {
@@ -261,4 +277,8 @@ extension LoginVC: LoginButtonDelegate {
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
         // No Operation
     }
+    
+    
+    
+    
 }
