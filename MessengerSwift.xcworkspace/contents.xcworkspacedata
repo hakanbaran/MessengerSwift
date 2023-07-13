@@ -4,4 +4,10 @@
    <FileRef
       location = "container:MessengerSwift.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:MessengerSwift.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC9D0B976CCE8D9A12BF914C /* Pods_MessengerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71367DFC7BCCBEEF41CC81AD /* Pods_MessengerSwift.framework */; };
 		D450EF522A583ED00077C1A3 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450EF512A583ED00077C1A3 /* DatabaseManager.swift */; };
 		D450EF552A5844820077C1A3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF542A5844820077C1A3 /* FirebaseAnalytics */; };
 		D450EF572A5844820077C1A3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF562A5844820077C1A3 /* FirebaseAuth */; };
@@ -16,15 +17,12 @@
 		D450EF602A5844F10077C1A3 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF5F2A5844F10077C1A3 /* FirebaseDatabaseSwift */; };
 		D450EF632A5BF5350077C1A3 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF622A5BF5350077C1A3 /* FacebookCore */; };
 		D450EF652A5BF5350077C1A3 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF642A5BF5350077C1A3 /* FacebookLogin */; };
-		D450EF692A5CC7DD0077C1A3 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF682A5CC7DD0077C1A3 /* GoogleSignIn */; };
-		D450EF6B2A5CC7DD0077C1A3 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF6A2A5CC7DD0077C1A3 /* GoogleSignInSwift */; };
 		D450EF712A5CEC680077C1A3 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF702A5CEC680077C1A3 /* JGProgressHUD */; };
 		D450EF742A5CECCF0077C1A3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF732A5CECCF0077C1A3 /* Realm */; };
 		D450EF762A5CECCF0077C1A3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF752A5CECCF0077C1A3 /* RealmSwift */; };
 		D450EF792A5CECF70077C1A3 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D450EF782A5CECF70077C1A3 /* SDWebImage */; };
-		D45EDFC32A5E0398004C5C0D /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45EDFC22A5E0398004C5C0D /* Bubble.swift */; };
-		D45EDFC62A5E0683004C5C0D /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45EDFC52A5E0683004C5C0D /* BubbleCell.swift */; };
 		D45EDFCA2A5E18D0004C5C0D /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D45EDFC92A5E18D0004C5C0D /* MessageKit */; };
+		D45EDFCC2A5F5193004C5C0D /* StorageMnager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45EDFCB2A5F5193004C5C0D /* StorageMnager.swift */; };
 		D47E5EC62A5804AA002C07C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EC52A5804AA002C07C1 /* AppDelegate.swift */; };
 		D47E5EC82A5804AA002C07C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EC72A5804AA002C07C1 /* SceneDelegate.swift */; };
 		D47E5ECA2A5804AA002C07C1 /* ConversationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EC92A5804AA002C07C1 /* ConversationsVC.swift */; };
@@ -39,14 +37,18 @@
 		D47E5EEA2A58077C002C07C1 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EE92A58077C002C07C1 /* LoginVC.swift */; };
 		D47E5EEC2A58078A002C07C1 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E5EEB2A58078A002C07C1 /* RegisterVC.swift */; };
 		D47E5EEE2A580A88002C07C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D47E5EED2A580A88002C07C1 /* GoogleService-Info.plist */; };
+		D49BCC652A5F78BC002D53FE /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D49BCC642A5F78BC002D53FE /* GoogleSignIn */; };
+		D49BCC672A5F78BC002D53FE /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D49BCC662A5F78BC002D53FE /* GoogleSignInSwift */; };
 		D4DFB1672A5CF131006A8008 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DFB1662A5CF131006A8008 /* ChatVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		290A6CBEF2893B7685EB8D39 /* Pods-MessengerSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessengerSwift.release.xcconfig"; path = "Target Support Files/Pods-MessengerSwift/Pods-MessengerSwift.release.xcconfig"; sourceTree = "<group>"; };
+		71367DFC7BCCBEEF41CC81AD /* Pods_MessengerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessengerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD6D5868F1A53E70ADF2221C /* Pods-MessengerSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessengerSwift.debug.xcconfig"; path = "Target Support Files/Pods-MessengerSwift/Pods-MessengerSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		D450EF512A583ED00077C1A3 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		D450EF662A5BF8B30077C1A3 /* MessengerSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessengerSwift.entitlements; sourceTree = "<group>"; };
-		D45EDFC22A5E0398004C5C0D /* Bubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
-		D45EDFC52A5E0683004C5C0D /* BubbleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleCell.swift; sourceTree = "<group>"; };
+		D45EDFCB2A5F5193004C5C0D /* StorageMnager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMnager.swift; sourceTree = "<group>"; };
 		D47E5EC22A5804AA002C07C1 /* MessengerSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47E5EC52A5804AA002C07C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D47E5EC72A5804AA002C07C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,18 +76,19 @@
 				D450EF652A5BF5350077C1A3 /* FacebookLogin in Frameworks */,
 				D450EF602A5844F10077C1A3 /* FirebaseDatabaseSwift in Frameworks */,
 				D450EF762A5CECCF0077C1A3 /* RealmSwift in Frameworks */,
+				D49BCC672A5F78BC002D53FE /* GoogleSignInSwift in Frameworks */,
 				D450EF592A5844820077C1A3 /* FirebaseDatabase in Frameworks */,
 				D450EF712A5CEC680077C1A3 /* JGProgressHUD in Frameworks */,
+				D49BCC652A5F78BC002D53FE /* GoogleSignIn in Frameworks */,
 				D450EF632A5BF5350077C1A3 /* FacebookCore in Frameworks */,
 				D450EF5B2A5844820077C1A3 /* FirebaseFirestore in Frameworks */,
-				D450EF6B2A5CC7DD0077C1A3 /* GoogleSignInSwift in Frameworks */,
 				D450EF792A5CECF70077C1A3 /* SDWebImage in Frameworks */,
 				D45EDFCA2A5E18D0004C5C0D /* MessageKit in Frameworks */,
 				D450EF552A5844820077C1A3 /* FirebaseAnalytics in Frameworks */,
 				D450EF5D2A5844820077C1A3 /* FirebaseStorage in Frameworks */,
 				D450EF572A5844820077C1A3 /* FirebaseAuth in Frameworks */,
 				D450EF742A5CECCF0077C1A3 /* Realm in Frameworks */,
-				D450EF692A5CC7DD0077C1A3 /* GoogleSignIn in Frameworks */,
+				BC9D0B976CCE8D9A12BF914C /* Pods_MessengerSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,16 +98,9 @@
 		D450EF5E2A5844F10077C1A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71367DFC7BCCBEEF41CC81AD /* Pods_MessengerSwift.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D45EDFC42A5E066B004C5C0D /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				D45EDFC52A5E0683004C5C0D /* BubbleCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		D47E5EB92A5804AA002C07C1 = {
@@ -113,6 +109,7 @@
 				D47E5EC42A5804AA002C07C1 /* MessengerSwift */,
 				D47E5EC32A5804AA002C07C1 /* Products */,
 				D450EF5E2A5844F10077C1A3 /* Frameworks */,
+				DBEE8D5A6B45706C82A63AF9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,6 +141,7 @@
 				D47E5EC72A5804AA002C07C1 /* SceneDelegate.swift */,
 				D47E5EDE2A58068D002C07C1 /* Extensions.swift */,
 				D450EF512A583ED00077C1A3 /* DatabaseManager.swift */,
+				D45EDFCB2A5F5193004C5C0D /* StorageMnager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -160,7 +158,6 @@
 		D47E5EDC2A580562002C07C1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D45EDFC42A5E066B004C5C0D /* Cells */,
 				D47E5EC92A5804AA002C07C1 /* ConversationsVC.swift */,
 				D47E5EE02A5806C4002C07C1 /* Login */,
 				D47E5EE12A5806DA002C07C1 /* ProfileVC.swift */,
@@ -168,7 +165,6 @@
 				D47E5EE52A58070B002C07C1 /* VideoPlayerVC.swift */,
 				D47E5EE72A58071B002C07C1 /* PhotoViewerVC.swift */,
 				D4DFB1662A5CF131006A8008 /* ChatVC.swift */,
-				D45EDFC22A5E0398004C5C0D /* Bubble.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -191,6 +187,15 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		DBEE8D5A6B45706C82A63AF9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CD6D5868F1A53E70ADF2221C /* Pods-MessengerSwift.debug.xcconfig */,
+				290A6CBEF2893B7685EB8D39 /* Pods-MessengerSwift.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,6 +203,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D47E5ED62A5804AB002C07C1 /* Build configuration list for PBXNativeTarget "MessengerSwift" */;
 			buildPhases = (
+				2334BEC33ECF6EF8B0F6F59F /* [CP] Check Pods Manifest.lock */,
 				D47E5EBE2A5804AA002C07C1 /* Sources */,
 				D47E5EBF2A5804AA002C07C1 /* Frameworks */,
 				D47E5EC02A5804AA002C07C1 /* Resources */,
@@ -216,13 +222,13 @@
 				D450EF5F2A5844F10077C1A3 /* FirebaseDatabaseSwift */,
 				D450EF622A5BF5350077C1A3 /* FacebookCore */,
 				D450EF642A5BF5350077C1A3 /* FacebookLogin */,
-				D450EF682A5CC7DD0077C1A3 /* GoogleSignIn */,
-				D450EF6A2A5CC7DD0077C1A3 /* GoogleSignInSwift */,
 				D450EF702A5CEC680077C1A3 /* JGProgressHUD */,
 				D450EF732A5CECCF0077C1A3 /* Realm */,
 				D450EF752A5CECCF0077C1A3 /* RealmSwift */,
 				D450EF782A5CECF70077C1A3 /* SDWebImage */,
 				D45EDFC92A5E18D0004C5C0D /* MessageKit */,
+				D49BCC642A5F78BC002D53FE /* GoogleSignIn */,
+				D49BCC662A5F78BC002D53FE /* GoogleSignInSwift */,
 			);
 			productName = MessengerSwift;
 			productReference = D47E5EC22A5804AA002C07C1 /* MessengerSwift.app */;
@@ -255,11 +261,11 @@
 			packageReferences = (
 				D450EF532A5844820077C1A3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D450EF612A5BF5350077C1A3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
-				D450EF672A5CC7DD0077C1A3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				D450EF6F2A5CEC680077C1A3 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				D450EF722A5CECCF0077C1A3 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				D450EF772A5CECF70077C1A3 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				D45EDFC82A5E18D0004C5C0D /* XCRemoteSwiftPackageReference "MessageKit" */,
+				D49BCC632A5F78BC002D53FE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = D47E5EC32A5804AA002C07C1 /* Products */;
 			projectDirPath = "";
@@ -284,13 +290,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2334BEC33ECF6EF8B0F6F59F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MessengerSwift-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D47E5EBE2A5804AA002C07C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D4DFB1672A5CF131006A8008 /* ChatVC.swift in Sources */,
-				D45EDFC32A5E0398004C5C0D /* Bubble.swift in Sources */,
 				D47E5EE62A58070B002C07C1 /* VideoPlayerVC.swift in Sources */,
 				D450EF522A583ED00077C1A3 /* DatabaseManager.swift in Sources */,
 				D47E5EE22A5806DA002C07C1 /* ProfileVC.swift in Sources */,
@@ -300,8 +330,8 @@
 				D47E5EEA2A58077C002C07C1 /* LoginVC.swift in Sources */,
 				D47E5EC82A5804AA002C07C1 /* SceneDelegate.swift in Sources */,
 				D47E5EE42A5806FA002C07C1 /* NewConversationsVC.swift in Sources */,
-				D45EDFC62A5E0683004C5C0D /* BubbleCell.swift in Sources */,
 				D47E5EDF2A58068D002C07C1 /* Extensions.swift in Sources */,
+				D45EDFCC2A5F5193004C5C0D /* StorageMnager.swift in Sources */,
 				D47E5EEC2A58078A002C07C1 /* RegisterVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +474,7 @@
 		};
 		D47E5ED72A5804AB002C07C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD6D5868F1A53E70ADF2221C /* Pods-MessengerSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -453,6 +484,7 @@
 				DEVELOPMENT_TEAM = 373Z282HAT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MessengerSwift/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -473,6 +505,7 @@
 		};
 		D47E5ED82A5804AB002C07C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 290A6CBEF2893B7685EB8D39 /* Pods-MessengerSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -482,6 +515,7 @@
 				DEVELOPMENT_TEAM = 373Z282HAT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MessengerSwift/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -540,14 +574,6 @@
 				minimumVersion = 14.0.0;
 			};
 		};
-		D450EF672A5CC7DD0077C1A3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 		D450EF6F2A5CEC680077C1A3 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD";
@@ -579,6 +605,14 @@
 				kind = versionRange;
 				maximumVersion = 4.0.0;
 				minimumVersion = 3.0.0;
+			};
+		};
+		D49BCC632A5F78BC002D53FE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -624,16 +658,6 @@
 			package = D450EF612A5BF5350077C1A3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookLogin;
 		};
-		D450EF682A5CC7DD0077C1A3 /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D450EF672A5CC7DD0077C1A3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		D450EF6A2A5CC7DD0077C1A3 /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D450EF672A5CC7DD0077C1A3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
-		};
 		D450EF702A5CEC680077C1A3 /* JGProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D450EF6F2A5CEC680077C1A3 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
@@ -658,6 +682,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D45EDFC82A5E18D0004C5C0D /* XCRemoteSwiftPackageReference "MessageKit" */;
 			productName = MessageKit;
+		};
+		D49BCC642A5F78BC002D53FE /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D49BCC632A5F78BC002D53FE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		D49BCC662A5F78BC002D53FE /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D49BCC632A5F78BC002D53FE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

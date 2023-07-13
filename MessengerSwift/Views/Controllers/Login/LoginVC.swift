@@ -8,8 +8,10 @@
 import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
-import GoogleSignInSwift
 import JGProgressHUD
+import GoogleSignIn
+import GoogleSignInSwift
+import FirebaseCore
 
 
 class LoginVC: UIViewController {
@@ -78,6 +80,33 @@ class LoginVC: UIViewController {
         return button
     }()
     
+    let googLeButton = GIDSignInButton()
+    
+    
+//    let googleSignInButton : UIButton = {
+//
+//        let button = UIButton()
+//        button.setImage(UIImage(systemName: "person"), for: .normal)
+//
+//        button.setTitle("BARANYUM", for: .normal)
+//
+//        button.contentHorizontalAlignment = .left
+//        button.contentVerticalAlignment = .center
+//
+//        button.titleLabel?.textAlignment = .center
+//
+//
+//
+//        button.titleColor(for: .normal)
+//
+//
+//        button.backgroundColor = .lightGray
+//
+//
+//        return button
+//    }()
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,11 +120,13 @@ class LoginVC: UIViewController {
         
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
+//        googleSignInButton.addTarget(self, action: #selector(googleSignIn), for: .touchUpInside)
+        
+        googLeButton.addTarget(self, action: #selector(googleSignIn), for: .touchUpInside)
+        
         
         emailField.delegate = self
         passwordField.delegate = self
-        
-        
         
         facebookLoginButton.delegate = self
         
@@ -106,6 +137,11 @@ class LoginVC: UIViewController {
         scrollView.addSubview(loginButton)
         scrollView.addGestureRecognizer(tapGesture)
         scrollView.addSubview(facebookLoginButton)
+//        scrollView.addSubview(googleSignInButton)
+        
+        
+        view.addSubview(googLeButton)
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -126,9 +162,67 @@ class LoginVC: UIViewController {
         
         facebookLoginButton.frame = CGRect(x: scrollView.width/2-scrollView.width/4, y: passwordField.bottom+40, width: scrollView.width/2, height: 40)
         
+//        googleSignInButton.frame = CGRect(x: scrollView.width/2-scrollView.width/4, y: facebookLoginButton.bottom+80, width: scrollView.width/1.5, height: 40)
+        
+        
+        googLeButton.frame = CGRect(x: scrollView.width/2-scrollView.width/4, y: facebookLoginButton.bottom+160, width: scrollView.width/2, height: 40)
+        
+        
         facebookLoginButton.center = scrollView.center
         facebookLoginButton.frame.origin.y = loginButton.bottom+20
         
+    }
+    
+    
+    @objc func googleSignIn() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else {
+            return
+        }
+
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) {  result, error in
+            guard error == nil else {
+                return
+            }
+            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
+                return
+            }
+            
+            print("Did sign in with Google: \(user)")
+            
+            guard let email = user.profile?.email,
+                  let firstName = user.profile?.givenName,
+                  let lastName = user.profile?.familyName else {
+                return
+            }
+                    
+                    
+            DatabaseManager.shared.userExists(with: email) { exists in
+                if !exists {
+                    // insert to database
+                    DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName,
+                                                                        lastName: lastName,
+                                                                        emailAddress: email))
+                }
+            }
+            
+            
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            FirebaseAuth.Auth.auth().signIn(with: credential) { authResult, error in
+                
+                guard authResult != nil, error == nil else {
+                    return
+                }
+                print("Successfully signed in with Google cred...")
+                
+                
+                self.dismiss(animated: true)
+            }
+            
+        }
     }
     
     @objc func dismissKeyboard() {

@@ -9,9 +9,31 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.579589166759-mfuqkh4j9sqrkhj2b730in3oig3au96o</string>
+				<string>fb196439713355259</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ENTER</string>
+				<string>GIDCLIENTID</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>Enter AppID</string>
+	<key>FacebookClientToken</key>
+	<string>Enter ClientToken</string>
+	<key>FacebookDisplayName</key>
+	<string>MessengerWithSwift</string>
+	<key>GIDClientID</key>
+	<string>579589166759-mfuqkh4j9sqrkhj2b730in3oig3au96o.apps.googleusercontent.com</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
@@ -32,29 +54,5 @@
 			</array>
 		</dict>
 	</dict>
-    
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fbEnter APPID</string>
-      </array>
-      </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>Enter AppID</string>
-    <key>FacebookClientToken</key>
-    <string>Enter ClientToken</string>
-    <key>FacebookDisplayName</key>
-    <string>MessengerWithSwift</string>
-    
-    
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>fbapi</string>
-      <string>fb-messenger-share-api</string>
-    </array>
-
 </dict>
 </plist>
