@@ -82,35 +82,22 @@ class LoginVC: UIViewController {
     
     let googLeButton = GIDSignInButton()
     
-    
-//    let googleSignInButton : UIButton = {
-//
-//        let button = UIButton()
-//        button.setImage(UIImage(systemName: "person"), for: .normal)
-//
-//        button.setTitle("BARANYUM", for: .normal)
-//
-//        button.contentHorizontalAlignment = .left
-//        button.contentVerticalAlignment = .center
-//
-//        button.titleLabel?.textAlignment = .center
-//
-//
-//
-//        button.titleColor(for: .normal)
-//
-//
-//        button.backgroundColor = .lightGray
-//
-//
-//        return button
-//    }()
-    
+    private var loginObserver: NSObjectProtocol?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        loginObserver = NotificationCenter.default.addObserver(forName: Notification.Name.didLogInNotification, object: nil, queue: .main, using: { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.navigationController?.dismiss(animated: true)
+        })
+        
+        
+        
         view.backgroundColor = .white
         title = "Log In"
         
@@ -119,8 +106,6 @@ class LoginVC: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        
-//        googleSignInButton.addTarget(self, action: #selector(googleSignIn), for: .touchUpInside)
         
         googLeButton.addTarget(self, action: #selector(googleSignIn), for: .touchUpInside)
         
@@ -137,12 +122,18 @@ class LoginVC: UIViewController {
         scrollView.addSubview(loginButton)
         scrollView.addGestureRecognizer(tapGesture)
         scrollView.addSubview(facebookLoginButton)
-//        scrollView.addSubview(googleSignInButton)
-        
         
         view.addSubview(googLeButton)
         
     }
+    
+    
+    deinit {
+        if let observer = loginObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -202,9 +193,42 @@ class LoginVC: UIViewController {
             DatabaseManager.shared.userExists(with: email) { exists in
                 if !exists {
                     // insert to database
-                    DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName,
-                                                                        lastName: lastName,
-                                                                        emailAddress: email))
+                    let chatUser = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
+                    
+                    DatabaseManager.shared.insertUser(with: chatUser) { success in
+                        if success {
+                            // Upload image
+                            
+                            guard let userHasImage = user.profile?.hasImage else {
+                                return
+                            }
+                            
+                            
+                            if userHasImage {
+                                guard let url = user.profile?.imageURL(withDimension: 200) else {
+                                    return
+                                }
+                                URLSession.shared.dataTask(with: url) { data, response, error in
+                                    guard let data = data else {
+                                        return
+                                    }
+                                    
+                                    let fileName = chatUser.profilePictureFileName
+                                    StorageManager.shared.uploadProfilePicture(with: data, fileName: fileName) { result in
+                                        switch result {
+                                        case .success(let downloadURL):
+                                            UserDefaults.standard.set(downloadURL, forKey: "profile_picture_url")
+                                            print(downloadURL)
+                                        case .failure(let error):
+                                            print("Storage manager error: \(error)")
+                                        }
+                                    }
+                                    
+                                    
+                                }.resume()
+                            }
+                        }
+                    }
                 }
             }
             
@@ -218,6 +242,7 @@ class LoginVC: UIViewController {
                 }
                 print("Successfully signed in with Google cred...")
                 
+                NotificationCenter.default.post(name: .didLogInNotification, object: nil)
                 
                 self.dismiss(animated: true)
             }
@@ -312,7 +337,7 @@ extension LoginVC: LoginButtonDelegate {
         }
         
         let facebookRequest = FBSDKLoginKit.GraphRequest(graphPath: "me",
-                                                         parameters: ["fields": "email, name"],
+                                                         parameters: ["fields": "email, first_name, last_name, picture.type(large)"],
                                                          tokenString: token,
                                                          version: nil,
                                                          httpMethod: .get)
@@ -324,25 +349,60 @@ extension LoginVC: LoginButtonDelegate {
                 return
             }
             
-            guard let userName = result["name"] as? String,
-                  let email = result["email"] as? String else {
+            print(result)
+            
+            guard let firstName = result["first_name"] as? String,
+                  let lastName = result["last_name"] as? String,
+                  let email = result["email"] as? String,
+                  let picture = result["picture"] as? [String: Any],
+                  let data = picture["data"] as? [String: Any],
+                  let pictureURL = data["url"] as? String else {
                 print("Failed to get email and name from fb result")
                 return
             }
             
-            let nameComponents = userName.components(separatedBy: " ")
-            guard nameComponents.count == 2 else {
-                return
-            }
             
-            let firstName = nameComponents[0]
-            let lastName = nameComponents[1]
+            
+         
             
             DatabaseManager.shared.userExists(with: email) { exists in
                 if !exists {
-                    DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName,
-                                                                        lastName: lastName,
-                                                                        emailAddress: email))
+                    let chatUser = ChatAppUser(firstName: firstName,
+                                               lastName: lastName,
+                                               emailAddress: email)
+                    
+                    DatabaseManager.shared.insertUser(with: chatUser) { success in
+                        if success {
+                            
+                            guard let url = URL(string: pictureURL) else {
+                                return
+                            }
+                            
+                            print("Downloading data from facebook image")
+                            
+                            URLSession.shared.dataTask(with: url) { data, response, error in
+                                guard let data = data else {
+                                    print("Failed to get data from facebook")
+                                    return
+                                }
+                                
+                                print("Got data from FB, uloading...")
+                                
+                                // Upload Image
+                                
+                                let fileName = chatUser.profilePictureFileName
+                                StorageManager.shared.uploadProfilePicture(with: data, fileName: fileName) { result in
+                                    switch result {
+                                    case .success(let downloadURL):
+                                        UserDefaults.standard.set(downloadURL, forKey: "profile_picture_url")
+                                        print(downloadURL)
+                                    case .failure(let error):
+                                        print("Storage manager error: \(error)")
+                                    }
+                                }
+                            }.resume()
+                        }
+                    }
                 }
             }
         }
