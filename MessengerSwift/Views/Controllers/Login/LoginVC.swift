@@ -188,7 +188,8 @@ class LoginVC: UIViewController {
                   let lastName = user.profile?.familyName else {
                 return
             }
-                    
+            
+            UserDefaults.standard.set(email, forKey: "email")
                     
             DatabaseManager.shared.userExists(with: email) { exists in
                 if !exists {
@@ -284,6 +285,9 @@ class LoginVC: UIViewController {
             }
             
             let user = result.user
+            
+            UserDefaults.standard.set(email, forKey: "email")
+            
             print("Logged In User: \(user)")
             
             strongSelf.navigationController?.dismiss(animated: true)
@@ -361,7 +365,7 @@ extension LoginVC: LoginButtonDelegate {
                 return
             }
             
-            
+            UserDefaults.standard.set(email, forKey: "email")
             
          
             
