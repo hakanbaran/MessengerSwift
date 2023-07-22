@@ -40,6 +40,7 @@
 		D49BCC652A5F78BC002D53FE /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D49BCC642A5F78BC002D53FE /* GoogleSignIn */; };
 		D49BCC672A5F78BC002D53FE /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D49BCC662A5F78BC002D53FE /* GoogleSignInSwift */; };
 		D4DFB1672A5CF131006A8008 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DFB1662A5CF131006A8008 /* ChatVC.swift */; };
+		D4F331D32A65724E00991743 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F331D22A65724E00991743 /* ConversationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		D47E5EEB2A58078A002C07C1 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		D47E5EED2A580A88002C07C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4DFB1662A5CF131006A8008 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		D4F331D22A65724E00991743 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 		D47E5EDC2A580562002C07C1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4F331D12A65723500991743 /* Cells */,
 				D47E5EC92A5804AA002C07C1 /* ConversationsVC.swift */,
 				D47E5EE02A5806C4002C07C1 /* Login */,
 				D47E5EE12A5806DA002C07C1 /* ProfileVC.swift */,
@@ -185,6 +188,14 @@
 				D47E5EEB2A58078A002C07C1 /* RegisterVC.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		D4F331D12A65723500991743 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D4F331D22A65724E00991743 /* ConversationTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		DBEE8D5A6B45706C82A63AF9 /* Pods */ = {
@@ -330,6 +341,7 @@
 				D47E5EEA2A58077C002C07C1 /* LoginVC.swift in Sources */,
 				D47E5EC82A5804AA002C07C1 /* SceneDelegate.swift in Sources */,
 				D47E5EE42A5806FA002C07C1 /* NewConversationsVC.swift in Sources */,
+				D4F331D32A65724E00991743 /* ConversationTableViewCell.swift in Sources */,
 				D47E5EDF2A58068D002C07C1 /* Extensions.swift in Sources */,
 				D45EDFCC2A5F5193004C5C0D /* StorageMnager.swift in Sources */,
 				D47E5EEC2A58078A002C07C1 /* RegisterVC.swift in Sources */,

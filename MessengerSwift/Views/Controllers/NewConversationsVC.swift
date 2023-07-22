@@ -152,9 +152,9 @@ extension NewConversationsVC: UISearchBarDelegate {
 //        }
 
 //        let safeEmail = DatabaseManager.safeEmail(emailAddress: currentUserEmail)
-
+        
         self.spinner.dismiss()
-
+        
         let results: [[String: String]] = users.filter({
 //            guard let email = $0["email"], email != safeEmail else {
 //                return false
@@ -162,15 +162,12 @@ extension NewConversationsVC: UISearchBarDelegate {
             guard let name = $0["name"]?.lowercased() else {
                 return false
             }
-
             return name.hasPrefix(term.lowercased())
         })
-
         self.results = results
-
         updateUI()
     }
-
+    
     func updateUI() {
         if results.isEmpty {
             noResultsLabel.isHidden = false
@@ -182,5 +179,4 @@ extension NewConversationsVC: UISearchBarDelegate {
             tableView.reloadData()
         }
     }
-
 }

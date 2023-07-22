@@ -20,7 +20,6 @@ struct Message: MessageType {
 extension MessageKind {
     var messageKindString: String {
         switch self {
-            
         case .text(_):
             return "text"
         case .attributedText(_):
@@ -60,11 +59,16 @@ class ChatVC: MessagesViewController {
         formatter.dateStyle = .medium
         formatter.timeStyle = .long
         formatter.locale = .current
+        
+//         20 Jul 2023 21:37:37 GMT+3
+        
+        formatter.dateFormat = "dd MM yyyy HH:mm:ss 'GMT'Z"
         return formatter
     }()
     
     
     public var otherUserEmail = String()
+    private var conversationID = String()
     public var isNewConversation = false
     
     private var messages = [Message]()
@@ -74,14 +78,25 @@ class ChatVC: MessagesViewController {
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
             return nil
         }
+        
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+        
+        
         return Sender(photoURL: "",
-                      senderId: email ,
-               displayName: "Joe Smith")
+                      senderId: safeEmail ,
+               displayName: "Me")
     }
     
-    init(with email: String) {
-        super.init(nibName: nil, bundle: nil)
+    
+    
+    init(with email: String, id: String?) {
+        
         self.otherUserEmail = email
+        self.conversationID = id ?? ""
+        
+        super.init(nibName: nil, bundle: nil)
+        
+
     }
     
     required init?(coder: NSCoder) {
@@ -93,22 +108,99 @@ class ChatVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
         messageInputBar.delegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         messageInputBar.inputTextView.becomeFirstResponder()
+        
+        //        if let conversationID = conversationID {
+        //            listenForMessages(id: conversationID, shouldScrollToBottom: true)
+        //        }
+        
+        listenForMessages(id: conversationID, shouldScrollToBottom: true)
     }
-  
+    
+//    private func listenForMessages(id: String, shouldScrollToBottom: Bool) {
+//
+//        print("ID Hatası alıyorum \(id)")
+//
+//        DatabaseManager.shared.getAllMessagesForConversation(with: id) { [weak self] result in
+//
+//
+//            switch result {
+//            case .success(let messages):
+//                guard !messages.isEmpty else {
+//                    return
+//                }
+//
+//                self?.messages = messages
+//                DispatchQueue.main.async {
+//                    self?.messagesCollectionView.reloadDataAndKeepOffset()
+//
+//                    if shouldScrollToBottom {
+//                        self?.messagesCollectionView.scrollToBottom()
+//                    }
+//                }
+//            case .failure(let error):
+//                print("Failed to get messages \(error)")
+//            }
+//        }
+//    }
+    
+//    private func listenForMessages(id: String, shouldScrollToBottom: Bool) {
+//        DatabaseManager.shared.getAllMessagesForConversation(with: id, completion: { [weak self] result in
+//            switch result {
+//            case .success(let messages):
+//                print("success in getting messages: \(messages)")
+//                guard !messages.isEmpty else {
+//                    print("messages are empty")
+//                    return
+//                }
+//                self?.messages = messages
+//
+//                DispatchQueue.main.async {
+//                    self?.messagesCollectionView.reloadDataAndKeepOffset()
+//
+//                    if shouldScrollToBottom {
+//                        self?.messagesCollectionView.scrollToBottom()
+//                    }
+//                }
+//            case .failure(let error):
+//                print("failed to get messages: \(error)")
+//            }
+//        })
+//    }
+    
+    private func listenForMessages(id: String, shouldScrollToBottom: Bool) {
+        DatabaseManager.shared.getAllMessagesForConversation(with: id, completion: { [weak self] result in
+            switch result {
+            case .success(let messages):
+                print("success in getting messages: \(messages)")
+                guard !messages.isEmpty else {
+                    print("messages are empty")
+                    return
+                }
+                self?.messages = messages
+
+                DispatchQueue.main.async {
+                    self?.messagesCollectionView.reloadDataAndKeepOffset()
+
+                    if shouldScrollToBottom {
+                        self?.messagesCollectionView.scrollToLastItem()
+                    }
+                }
+            case .failure(let error):
+                print("failed to get messages: \(error)")
+            }
+        })
+    }
+    
     
 }
 
@@ -147,6 +239,9 @@ extension ChatVC: InputBarAccessoryViewDelegate {
         // Send Message
         if isNewConversation {
             
+            
+            
+            
             let message = Message(sender: selfSender,
                                   messageId: messageID,
                                   sentDate: Date(),
@@ -155,7 +250,7 @@ extension ChatVC: InputBarAccessoryViewDelegate {
             
             // Create convo in database
             
-            DatabaseManager.shared.createNewConversation(with: otherUserEmail, firstMessage: message) { success in
+            DatabaseManager.shared.createNewConversation(with: otherUserEmail, name: self.title ?? "User", firstMessage: message) { success in
                 if success {
                     print("Message Send")
                 } else {

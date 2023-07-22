@@ -38,3 +38,13 @@ extension UIView {
 extension Notification.Name {
     static let didLogInNotification = Notification.Name("didLogInNotification")
 }
+
+extension String {
+    var toDate : Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy HH:mm:ss z"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+3")
+        return dateFormatter.date(from: self)
+    }
+}

@@ -77,8 +77,6 @@ class ProfileVC: UIViewController {
         }
         .resume()
     }
-    
-    
 }
 
 extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
