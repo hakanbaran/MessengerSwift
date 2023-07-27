@@ -48,3 +48,14 @@ extension String {
         return dateFormatter.date(from: self)
     }
 }
+
+extension String {
+    func toDate(format: String = "dd MMM yyyy HH:mm:ss z", timeZoneAbbreviation: String = "GMT+3") -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(abbreviation: timeZoneAbbreviation)
+        
+        return dateFormatter.date(from: self)
+    }
+}

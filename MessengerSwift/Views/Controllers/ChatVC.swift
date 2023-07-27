@@ -55,15 +55,11 @@ struct Sender: SenderType {
 class ChatVC: MessagesViewController {
     
     public static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .long
-        formatter.locale = .current
-        
-//         20 Jul 2023 21:37:37 GMT+3
-        
-        formatter.dateFormat = "dd MM yyyy HH:mm:ss 'GMT'Z"
-        return formatter
+        let formattre = DateFormatter()
+        formattre.dateStyle = .medium
+        formattre.timeStyle = .long
+        formattre.locale = .current
+        return formattre
     }()
     
     
@@ -236,29 +232,42 @@ extension ChatVC: InputBarAccessoryViewDelegate {
         
         print("Sending: \(text)")
         
+        let message = Message(sender: selfSender,
+                              messageId: messageID,
+                              sentDate: Date(),
+                              kind: .text(text))
+        
         // Send Message
         if isNewConversation {
             
             
-            
-            
-            let message = Message(sender: selfSender,
-                                  messageId: messageID,
-                                  sentDate: Date(),
-                                  kind: .text(text))
-            
-            
             // Create convo in database
             
-            DatabaseManager.shared.createNewConversation(with: otherUserEmail, name: self.title ?? "User", firstMessage: message) { success in
+            DatabaseManager.shared.createNewConversation(with: otherUserEmail, name: self.title ?? "User", firstMessage: message) { [weak self] success in
                 if success {
                     print("Message Send")
+                    self?.isNewConversation = false
                 } else {
                     print("Failed to send...")
                 }
             }
         } else {
             // Append to existing conversation data
+            
+           
+            
+            
+            guard let conversationID = conversationID as? String, let name = self.title else {
+                return
+            }
+            
+            DatabaseManager.shared.sendMessage(to: conversationID, otherUserEmail: otherUserEmail, name: name, newMessage: message) { success in
+                if success {
+                    print("Message Sent!!!")
+                } else {
+                    print("Failed to Send!!!")
+                }
+            }
         }
     }
     

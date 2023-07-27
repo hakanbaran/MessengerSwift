@@ -9,7 +9,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fbENTER</string>
+				<string>EnterID</string>
 			</array>
 		</dict>
 		<dict>
@@ -17,7 +17,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.579589166759-mfuqkh4j9sqrkhj2b730in3oig3au96o</string>
+				<string>ENTERIDCOM</string>
 			</array>
 		</dict>
 		<dict>
@@ -30,13 +30,13 @@
 		</dict>
 	</array>
 	<key>FacebookAppID</key>
-	<string>ENTER</string>
-	<key>FacebookClientToken</key>
 	<string>ENTERID</string>
+	<key>FacebookClientToken</key>
+	<string>ENTERIDTOKEN</string>
 	<key>FacebookDisplayName</key>
 	<string>MessengerWithSwift</string>
 	<key>GIDClientID</key>
-	<string>ENTERIDCOM</string>
+	<string>5ENTERIDCOM</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
