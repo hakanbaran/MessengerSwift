@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Please allow access to take a profile picture...</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Please allow access to select a photo for your profile...</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Please allow access to send audio and video messages...</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -9,7 +15,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>EnterID</string>
+				<string>fb196439713355259</string>
 			</array>
 		</dict>
 		<dict>
@@ -17,7 +23,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ENTERIDCOM</string>
+				<string>ENTER</string>
 			</array>
 		</dict>
 		<dict>
@@ -30,13 +36,13 @@
 		</dict>
 	</array>
 	<key>FacebookAppID</key>
-	<string>ENTERID</string>
+	<string>Enter</string>
 	<key>FacebookClientToken</key>
-	<string>ENTERIDTOKEN</string>
+	<string>Enter</string>
 	<key>FacebookDisplayName</key>
 	<string>MessengerWithSwift</string>
 	<key>GIDClientID</key>
-	<string>5ENTERIDCOM</string>
+	<string>Enter</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

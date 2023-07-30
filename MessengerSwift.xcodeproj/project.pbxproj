@@ -41,6 +41,7 @@
 		D49BCC672A5F78BC002D53FE /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D49BCC662A5F78BC002D53FE /* GoogleSignInSwift */; };
 		D4DFB1672A5CF131006A8008 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DFB1662A5CF131006A8008 /* ChatVC.swift */; };
 		D4F331D32A65724E00991743 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F331D22A65724E00991743 /* ConversationTableViewCell.swift */; };
+		D4F79A2F2A76A5ED00227F67 /* NewConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F79A2E2A76A5ED00227F67 /* NewConversationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		D47E5EED2A580A88002C07C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4DFB1662A5CF131006A8008 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		D4F331D22A65724E00991743 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
+		D4F79A2E2A76A5ED00227F67 /* NewConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				D4F331D22A65724E00991743 /* ConversationTableViewCell.swift */,
+				D4F79A2E2A76A5ED00227F67 /* NewConversationCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DFB1672A5CF131006A8008 /* ChatVC.swift in Sources */,
+				D4F79A2F2A76A5ED00227F67 /* NewConversationCell.swift in Sources */,
 				D47E5EE62A58070B002C07C1 /* VideoPlayerVC.swift in Sources */,
 				D450EF522A583ED00077C1A3 /* DatabaseManager.swift in Sources */,
 				D47E5EE22A5806DA002C07C1 /* ProfileVC.swift in Sources */,

@@ -235,19 +235,6 @@ extension DatabaseManager {
                 ]
             ]
             
-            // Update recipient conversation entry
-            
-//            self?.database.child("\(otherUserEmail)/conversations").observeSingleEvent(of: .value) { [weak self] snapshot in
-//                if var conversations = snapshot.value as? [[String: Any]] {
-//                    // Append
-//                    conversations.append(recipient_newConversationData)
-//                    self?.database.child("\(otherUserEmail)/conversations").setValue(conversationID)
-//                } else {
-//                    // Create
-//                    self?.database.child("\(otherUserEmail)/conversations").setValue([recipient_newConversationData])
-//                }
-//            }
-            
             self?.database.child("\(otherUserEmail)/conversations").observeSingleEvent(of: .value, with: { [weak self] snapshot in
                 if var conversatoins = snapshot.value as? [[String: Any]] {
                     // append
@@ -460,6 +447,19 @@ extension DatabaseManager {
                     
                     kind = .photo(media)
                     
+                } else if type == "video" {
+                    
+                    // Video
+                    
+                    guard let videoURL = URL(string: content),
+                    let placeHolder = UIImage(named: "play") else {
+                        return nil
+                    }
+                    
+                    let media = Media(url: videoURL, placeholderImage: placeHolder, size: CGSize(width: 300, height: 300))
+                    
+                    kind = .video(media)
+                    
                 } else {
                     kind = .text(content)
                 }
@@ -524,7 +524,10 @@ extension DatabaseManager {
                 }
                 
                 break
-            case .video(_):
+            case .video(let mediaItem):
+                if let targetURLString = mediaItem.url?.absoluteString {
+                    message = targetURLString
+                }
                 break
             case .location(_):
                 break

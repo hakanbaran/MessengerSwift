@@ -76,6 +76,7 @@ class ConversationsVC: UIViewController {
         
         DatabaseManager.shared.getAllConversations(for: safeEmail) { [weak self] result in
             
+            print("1")
             
             switch result {
                 
@@ -84,6 +85,8 @@ class ConversationsVC: UIViewController {
                 
                 print("Successfully got conversations models...")
                 
+                print("2")
+                
                 guard !conversations.isEmpty else {
                     return
                 }
@@ -91,9 +94,13 @@ class ConversationsVC: UIViewController {
                 
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
+                    
+                    print("3")
                 }
                 
             case .failure(let error):
+                
+                print("4")
                 
                 print("Failed to get convos: \(error)")
             }
@@ -130,12 +137,10 @@ class ConversationsVC: UIViewController {
         
     }
     
-    private func createNewConversation(result: [String: String]) {
+    private func createNewConversation(result: SearchResult) {
         
-        guard let name = result["name"],
-              let email = result["email"] else {
-            return
-        }
+        let name = result.name
+        let email = result.email
         
         let vc = ChatVC(with: email, id: nil)
         vc.isNewConversation = true

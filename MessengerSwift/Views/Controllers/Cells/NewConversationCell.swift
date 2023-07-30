@@ -1,21 +1,21 @@
 //
-//  ConversationTableViewCell.swift
+//  NewConversationCell.swift
 //  MessengerSwift
 //
-//  Created by Hakan Baran on 17.07.2023.
+//  Created by Hakan Baran on 30.07.2023.
 //
 
-import UIKit
+import Foundation
 import SDWebImage
 
-class ConversationTableViewCell: UITableViewCell {
+class NewConversationCell: UITableViewCell {
     
-    static let identifier = "ConversationTableViewCell"
+    static let identifier = "NewConversationCell"
     
     private let userImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 50
+        imageView.layer.cornerRadius = 35
         imageView.layer.masksToBounds = true
         return imageView
     }()
@@ -25,20 +25,13 @@ class ConversationTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 21, weight: .semibold)
         return label
     }()
-
-    private let userMessageLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 19, weight: .regular)
-        label.numberOfLines = 0
-        return label
-    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubview(userImageView)
         contentView.addSubview(userNameLabel)
-        contentView.addSubview(userMessageLabel)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -47,20 +40,20 @@ class ConversationTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        userImageView.frame = CGRect(x: 10, y: 10, width: 100, height: 100)
+        userImageView.frame = CGRect(x: 10, y: 10, width: 70, height: 70)
         
-        userNameLabel.frame = CGRect(x: userImageView.right+10, y: 10, width: contentView.width-20-userImageView.width, height: (contentView.height-20)/2)
+        userNameLabel.frame = CGRect(x: userImageView.right+10, y: 20, width: contentView.width-20-userImageView.width, height: 50)
         
-        userMessageLabel.frame = CGRect(x: userImageView.right+10, y: userNameLabel.bottom+10, width: contentView.width-20-userImageView.width, height: (contentView.height)/2)
+        
         
     }
     
-    public func configure(with model: Conversation) {
+    public func configure(with model: SearchResult) {
         
-        self.userMessageLabel.text = model.latestMessage.text
+        
         self.userNameLabel.text = model.name
         
-        let path = "images/\(model.otherUserEmail)_profile_picture.png"
+        let path = "images/\(model.email)_profile_picture.png"
         
         StorageManager.shared.downloadURL(for: path) { [weak self] result in
             
