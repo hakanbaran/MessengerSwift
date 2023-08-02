@@ -42,6 +42,7 @@
 		D4DFB1672A5CF131006A8008 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DFB1662A5CF131006A8008 /* ChatVC.swift */; };
 		D4F331D32A65724E00991743 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F331D22A65724E00991743 /* ConversationTableViewCell.swift */; };
 		D4F79A2F2A76A5ED00227F67 /* NewConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F79A2E2A76A5ED00227F67 /* NewConversationCell.swift */; };
+		D4F79A312A7A846700227F67 /* LocationPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F79A302A7A846700227F67 /* LocationPickerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		D4DFB1662A5CF131006A8008 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		D4F331D22A65724E00991743 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		D4F79A2E2A76A5ED00227F67 /* NewConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationCell.swift; sourceTree = "<group>"; };
+		D4F79A302A7A846700227F67 /* LocationPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				D47E5EE52A58070B002C07C1 /* VideoPlayerVC.swift */,
 				D47E5EE72A58071B002C07C1 /* PhotoViewerVC.swift */,
 				D4DFB1662A5CF131006A8008 /* ChatVC.swift */,
+				D4F79A302A7A846700227F67 /* LocationPickerVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DFB1672A5CF131006A8008 /* ChatVC.swift in Sources */,
+				D4F79A312A7A846700227F67 /* LocationPickerVC.swift in Sources */,
 				D4F79A2F2A76A5ED00227F67 /* NewConversationCell.swift in Sources */,
 				D47E5EE62A58070B002C07C1 /* VideoPlayerVC.swift in Sources */,
 				D450EF522A583ED00077C1A3 /* DatabaseManager.swift in Sources */,
