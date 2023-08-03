@@ -188,7 +188,52 @@ class ChatVC: MessagesViewController {
     }
     
     private func presentLocationPicker() {
+        let vc = LocationPickerVC(coordinates: nil)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        vc.title = "Pick Location"
+        vc.completion = { [weak self] selectedCoordinates in
+            
+            guard let strongSelf = self else {
+                return
+            }
+            
+            guard let messageID = strongSelf.createMessageID(),
+                  let conversationID = strongSelf.conversationID as? String,
+            let name = strongSelf.title,
+                  let selfSender = strongSelf.selfSender else {
+                return
+            }
+
+            let longitude: Double = selectedCoordinates.longitude
+            let latitude: Double = selectedCoordinates.latitude
+
+            print("long= \(longitude) || latitute=\(latitude)")
+            
+            let location = Location(location: CLLocation(latitude: latitude, longitude: longitude), size: .zero)
+            
+            
+            let message = Message(sender: selfSender,
+                                  messageId: messageID,
+                                  sentDate: Date(),
+                                  kind: .location(location))
+            
+            DatabaseManager.shared.sendMessage(to: conversationID, otherUserEmail: strongSelf.otherUserEmail, name: name , newMessage: message) { success in
+                
+                if success {
+                    print("Sent Locatiom Message")
+                } else {
+                    print("Failed to send Location message")
+                }
+                
+            }
+
+        }
+
         
+        let navController = UINavigationController(rootViewController: vc)
+            present(navController, animated: true)
+        
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func presentPhotoInputActionSheet() {
@@ -446,10 +491,36 @@ extension ChatVC: MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDel
 
 extension ChatVC: MessageCellDelegate {
     
+    
+    func didTapMessage(in cell: MessageCollectionViewCell) {
+        guard let indexPath = messagesCollectionView.indexPath(for: cell) else {
+            return
+        }
+        
+        let message = messages[indexPath.section]
+        
+        switch message.kind {
+        case .location(let locationData):
+            let coordinates = locationData.location.coordinate
+            let vc = LocationPickerVC(coordinates: coordinates)
+//            self.navigationController?.pushViewController(vc, animated: true)
+            vc.title = "Location"
+            
+            let navController = UINavigationController(rootViewController: vc)
+                present(navController, animated: true)
+        default:
+            break
+        }
+        
+        
+    }
+    
     func didTapImage(in cell: MessageCollectionViewCell) {
         guard let indexPath = messagesCollectionView.indexPath(for: cell) else {
             return
         }
+        
+        
 
         guard let message = messages[indexPath.section] as? Message else {
             return
@@ -476,6 +547,8 @@ extension ChatVC: MessageCellDelegate {
             break
         }
     }
+    
+    
     
 }
 
