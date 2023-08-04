@@ -15,7 +15,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb196439713355259</string>
+				<string>ENTER</string>
 			</array>
 		</dict>
 		<dict>
@@ -36,13 +36,13 @@
 		</dict>
 	</array>
 	<key>FacebookAppID</key>
-	<string>Enter</string>
+	<string>ENTER</string>
 	<key>FacebookClientToken</key>
-	<string>Enter</string>
+	<string>ENTER</string>
 	<key>FacebookDisplayName</key>
 	<string>MessengerWithSwift</string>
 	<key>GIDClientID</key>
-	<string>Enter</string>
+	<string>ENTER</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

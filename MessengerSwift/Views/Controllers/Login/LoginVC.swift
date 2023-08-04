@@ -13,7 +13,6 @@ import GoogleSignIn
 import GoogleSignInSwift
 import FirebaseCore
 
-
 class LoginVC: UIViewController {
     
     private let spinner = JGProgressHUD(style: .extraLight)
@@ -125,6 +124,7 @@ class LoginVC: UIViewController {
         
         view.addSubview(googLeButton)
         
+        
     }
     
     
@@ -133,6 +133,10 @@ class LoginVC: UIViewController {
             NotificationCenter.default.removeObserver(observer)
         }
     }
+    
+    
+    
+    
     
     
     override func viewDidLayoutSubviews() {

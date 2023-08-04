@@ -61,7 +61,6 @@ class ConversationsVC: UIViewController {
         view.addSubview(noConversationsLabel)
         
         setupTableView()
-        fetchConversations()
         startListeningForConversations()
         
         loginObserver = NotificationCenter.default.addObserver(forName: Notification.Name.didLogInNotification, object: nil, queue: .main, using: { [weak self] _ in
@@ -89,7 +88,7 @@ class ConversationsVC: UIViewController {
         
         DatabaseManager.shared.getAllConversations(for: safeEmail) { [weak self] result in
             
-            print("1")
+            
             
             switch result {
                 
@@ -98,22 +97,27 @@ class ConversationsVC: UIViewController {
                 
                 print("Successfully got conversations models...")
                 
-                print("2")
+                
                 
                 guard !conversations.isEmpty else {
+                    self?.tableView.isHidden = true
+                    self?.noConversationsLabel.isHidden = false
                     return
                 }
+                self?.noConversationsLabel.isHidden = true
+                self?.tableView.isHidden = false
                 self?.conversations = conversations
                 
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                     
-                    print("3")
+                    
                 }
                 
             case .failure(let error):
                 
-                print("4")
+                self?.tableView.isHidden = true
+                self?.noConversationsLabel.isHidden = false
                 
                 print("Failed to get convos: \(error)")
             }
@@ -135,6 +139,7 @@ class ConversationsVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+        noConversationsLabel.frame = CGRect(x: 10, y: (view.height-100)/2, width: view.width-20, height: 100)
     }
     
     @objc func didTapComposeButton() {
@@ -223,10 +228,7 @@ class ConversationsVC: UIViewController {
         
     }
     
-    private func fetchConversations() {
-        tableView.isHidden = false
-        
-    }
+    
 
 
 }
@@ -280,6 +282,7 @@ extension ConversationsVC: UITableViewDelegate, UITableViewDataSource {
             tableView.beginUpdates()
             DatabaseManager.shared.deleteConversation(conversationID: conversationID) { [weak self] success in
                 if success {
+                    
                     self?.conversations.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .left)
                 }

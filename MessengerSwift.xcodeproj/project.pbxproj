@@ -43,6 +43,7 @@
 		D4F331D32A65724E00991743 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F331D22A65724E00991743 /* ConversationTableViewCell.swift */; };
 		D4F79A2F2A76A5ED00227F67 /* NewConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F79A2E2A76A5ED00227F67 /* NewConversationCell.swift */; };
 		D4F79A312A7A846700227F67 /* LocationPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F79A302A7A846700227F67 /* LocationPickerVC.swift */; };
+		D4F79A332A7C421100227F67 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D4F79A322A7C421100227F67 /* FirebaseCrashlytics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 				D45EDFCA2A5E18D0004C5C0D /* MessageKit in Frameworks */,
 				D450EF552A5844820077C1A3 /* FirebaseAnalytics in Frameworks */,
 				D450EF5D2A5844820077C1A3 /* FirebaseStorage in Frameworks */,
+				D4F79A332A7C421100227F67 /* FirebaseCrashlytics in Frameworks */,
 				D450EF572A5844820077C1A3 /* FirebaseAuth in Frameworks */,
 				D450EF742A5CECCF0077C1A3 /* Realm in Frameworks */,
 				BC9D0B976CCE8D9A12BF914C /* Pods_MessengerSwift.framework in Frameworks */,
@@ -224,6 +226,7 @@
 				D47E5EBE2A5804AA002C07C1 /* Sources */,
 				D47E5EBF2A5804AA002C07C1 /* Frameworks */,
 				D47E5EC02A5804AA002C07C1 /* Resources */,
+				D4121FBD2A7C77A900E4F779 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -246,6 +249,7 @@
 				D45EDFC92A5E18D0004C5C0D /* MessageKit */,
 				D49BCC642A5F78BC002D53FE /* GoogleSignIn */,
 				D49BCC662A5F78BC002D53FE /* GoogleSignInSwift */,
+				D4F79A322A7C421100227F67 /* FirebaseCrashlytics */,
 			);
 			productName = MessengerSwift;
 			productReference = D47E5EC22A5804AA002C07C1 /* MessengerSwift.app */;
@@ -330,6 +334,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D4121FBD2A7C77A900E4F779 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(BUILT_PRODUCTS_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -411,7 +437,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -712,6 +738,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D49BCC632A5F78BC002D53FE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		D4F79A322A7C421100227F67 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D450EF532A5844820077C1A3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

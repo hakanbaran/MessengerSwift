@@ -24,14 +24,12 @@ func application(
     
     FirebaseApp.configure()
     
+    
     ApplicationDelegate.shared.application(
         application,
         didFinishLaunchingWithOptions: launchOptions
     )
     
-    
-    
-
     return true
 }
       

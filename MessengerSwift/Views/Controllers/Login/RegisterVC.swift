@@ -208,6 +208,9 @@ class RegisterVC: UIViewController {
                     return
                 }
                 
+                UserDefaults.standard.setValue(email, forKey: "email")
+                UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
+                
                 
                 let chatUser = ChatAppUser(firstName: firstName,
                                            lastName: lastName,
