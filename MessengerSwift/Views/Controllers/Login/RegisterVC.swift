@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import JGProgressHUD
 
-class RegisterVC: UIViewController {
+final class RegisterVC: UIViewController {
     
     private let spinner = JGProgressHUD(style: .extraLight)
 

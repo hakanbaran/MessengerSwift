@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoViewerVC: UIViewController {
+final class PhotoViewerVC: UIViewController {
 
     
     
@@ -37,7 +37,7 @@ class PhotoViewerVC: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .black
         view.addSubview(imageView)
-        imageView.sd_setImage(with: self.url)
+        imageView.sd_setImage(with: url)
         
     }
     

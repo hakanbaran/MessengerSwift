@@ -9,7 +9,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class LocationPickerVC: UIViewController {
+final class LocationPickerVC: UIViewController {
     
     public var completion: ((CLLocationCoordinate2D) -> Void)?
 

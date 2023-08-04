@@ -16,6 +16,8 @@ public enum StorageErrors: Error {
 final class StorageManager {
     static let shared = StorageManager()
     
+    private init() {}
+    
     private let storage = Storage.storage().reference()
     
     /*
@@ -28,7 +30,12 @@ final class StorageManager {
     
     public func uploadProfilePicture(with data: Data, fileName: String, completion: @escaping UploadPictureCompletion) {
         
-        storage.child("images/\(fileName)").putData(data, metadata: nil) { metadata, error in
+        storage.child("images/\(fileName)").putData(data, metadata: nil) { [weak self] metadata, error in
+            
+            guard let strongSelf = self else {
+                return
+            }
+            
             guard error == nil else {
                 // failed
                 print("Failed to Upload data to Firebase For picture")
@@ -36,7 +43,7 @@ final class StorageManager {
                 return
             }
             
-            self.storage.child("images/\(fileName)").downloadURL { url, error in
+            strongSelf.storage.child("images/\(fileName)").downloadURL { url, error in
                 guard let url = url else {
                     print("Failed to get download url")
                     completion(.failure(StorageErrors.failedToGetDownloadUrl))
@@ -55,7 +62,7 @@ final class StorageManager {
     /// Upload image that will be sent in a conversation Message
     public func uploadMessagePhoto(with data: Data, fileName: String, completion: @escaping UploadPictureCompletion) {
         
-        storage.child("message_images/\(fileName)").putData(data, metadata: nil) { [weak self ] metadata, error in
+        storage.child("message_images/\(fileName)").putData(data, metadata: nil) { [weak self] metadata, error in
             guard error == nil else {
                 // failed
                 print("Failed to Upload data to Firebase For picture")

@@ -13,8 +13,8 @@ import GoogleSignIn
 import GoogleSignInSwift
 import FirebaseCore
 
-class LoginVC: UIViewController {
-    
+final class LoginVC: UIViewController {
+
     private let spinner = JGProgressHUD(style: .extraLight)
 
     private let scrollView: UIScrollView = {

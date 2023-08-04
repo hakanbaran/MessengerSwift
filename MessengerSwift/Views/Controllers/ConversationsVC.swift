@@ -9,20 +9,9 @@ import UIKit
 import FirebaseAuth
 import JGProgressHUD
 
-struct Conversation {
-    let id: String
-    let name: String
-    let otherUserEmail: String
-    let latestMessage: LatestMessage
-}
 
-struct LatestMessage {
-    let date: String
-    let text: String
-    let isRead: Bool
-}
 
-class ConversationsVC: UIViewController {
+final class ConversationsVC: UIViewController {
     
     
     private let spinner = JGProgressHUD(style: .extraLight)
@@ -280,19 +269,18 @@ extension ConversationsVC: UITableViewDelegate, UITableViewDataSource {
             // Begin Delete
             let conversationID = conversations[indexPath.row].id
             tableView.beginUpdates()
-            DatabaseManager.shared.deleteConversation(conversationID: conversationID) { [weak self] success in
-                if success {
-                    
-                    self?.conversations.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .left)
+            
+            self.conversations.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            
+            
+            DatabaseManager.shared.deleteConversation(conversationID: conversationID) { success in
+                if !success {
+                    // Add model and row bacl and show error alert
                 }
             }
             tableView.endUpdates()
-            
         }
     }
-    
-    
-    
 }
 

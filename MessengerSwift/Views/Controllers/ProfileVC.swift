@@ -12,18 +12,7 @@ import GoogleSignIn
 import SDWebImage
 
 
-enum ProfileViewModelType {
-    case info, logout
-}
-
-struct ProfileViewModel {
-    let viewModelType: ProfileViewModelType
-    let title: String
-    let handler: (() -> Void)?
-}
-
-
-class ProfileVC: UIViewController {
+final class ProfileVC: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -159,12 +148,12 @@ class ProfileTableViewCell: UITableViewCell {
         self.textLabel?.text = viewModel.title
         switch viewModel.viewModelType {
         case .info:
-            self.textLabel?.textAlignment = .left
-            self.selectionStyle = .none
+            textLabel?.textAlignment = .left
+            selectionStyle = .none
             
         case .logout:
-            self.textLabel?.textColor = .red
-            self.textLabel?.textAlignment = .center
+            textLabel?.textColor = .red
+            textLabel?.textAlignment = .center
         }
     }
     
