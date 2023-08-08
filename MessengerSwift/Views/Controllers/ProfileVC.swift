@@ -17,17 +17,29 @@ final class ProfileVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var logOutButton: UIButton!
+    
+    
     var data = [ProfileViewModel]()
+    
+    let sectionsData = [
+            ["Set Profile Photo", "Set Username"],
+            ["Saved Messages", "Chat Folders"],
+            ["Notification and Sounds", "Privacy and Security", "Appearance", "Data Storage"]
+        ]
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         
-        data.append(ProfileViewModel(viewModelType: .info, title: "Name: \(UserDefaults.standard.value(forKey: "name") as? String ?? "No Name")", handler: nil))
+        logOutButton.addTarget(self, action: #selector(logOutButtonTapped), for: .touchUpInside)
         
-        data.append(ProfileViewModel(viewModelType: .info, title: "Email: \(UserDefaults.standard.value(forKey: "email") as? String ?? "No Email")", handler: nil))
+//        tableView.separatorStyle = .none
+        
+        data.append(ProfileViewModel(viewModelType: .info, title: "\(UserDefaults.standard.value(forKey: "name") as? String ?? "No Name")", handler: nil))
+        
+        data.append(ProfileViewModel(viewModelType: .info, title: "\(UserDefaults.standard.value(forKey: "email") as? String ?? "No Email")", handler: nil))
         
         data.append(ProfileViewModel(viewModelType: .logout, title: "LogOut", handler: { [weak self] in
             
@@ -72,12 +84,63 @@ final class ProfileVC: UIViewController {
             
         }))
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        
+        tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.tableHeaderView = createTableHeader()
 
+        
+    }
+    
+    @objc func logOutButtonTapped() {
+        
+        
+        
+        let actionSheet = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        actionSheet.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { [weak self] _ in
+            
+            guard let strongSelf = self else {
+                return
+            }
+            
+            UserDefaults.standard.setValue(nil, forKey: "email")
+            UserDefaults.standard.set(nil, forKey: "name")
+            
+            // Log Out Facebook
+            
+            FBSDKLoginKit.LoginManager().logOut()
+            
+            // Google Log Out
+            
+            GIDSignIn.sharedInstance.signOut()
+            
+            do {
+                try FirebaseAuth.Auth.auth().signOut()
+                
+                let vc = LoginVC()
+                let nav = UINavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                strongSelf.present(nav, animated: true)
+            } catch {
+                print("Failed to Log Out!!!")
+            }
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(actionSheet, animated: true)
+        
+        
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
         
     }
     
@@ -92,45 +155,75 @@ final class ProfileVC: UIViewController {
         
         let path = "images/"+fileName
         
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 300))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 220))
         
-        headerView.backgroundColor = .link
+        let headerImageView = UIImageView()
+        headerImageView.translatesAutoresizingMaskIntoConstraints = false
+        headerImageView.contentMode = .scaleAspectFill
+        headerImageView.backgroundColor = .white
+        headerImageView.layer.borderColor = UIColor.white.cgColor
+        headerImageView.layer.borderWidth = 3
+        headerImageView.layer.masksToBounds = true
+        headerImageView.layer.cornerRadius = 60
+        headerView.addSubview(headerImageView)
         
-        let imageView = UIImageView(frame: CGRect(x: (headerView.width-150)/2, y: 75, width: 150, height: 150))
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .white
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.borderWidth = 3
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = imageView.width/2
-        headerView.addSubview(imageView)
+        headerImageView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10).isActive = true
+        headerImageView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: (headerView.width/2-60)).isActive = true
+        headerImageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        headerImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         
         StorageManager.shared.downloadURL(for: path) { result in
             switch result {
             case .success(let url):
-                imageView.sd_setImage(with: url)
+                headerImageView.sd_setImage(with: url)
             case .failure(let error):
                 print("Failed to get download url: \(error)")
             }
         }
+        
+        let nameLabel = UILabel()
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.textAlignment = .center
+        nameLabel.font = .systemFont(ofSize: 22, weight: .semibold)
+        nameLabel.text = data[0].title
+        headerView.addSubview(nameLabel)
+        
+        nameLabel.topAnchor.constraint(equalTo: headerImageView.bottomAnchor, constant: 0).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: (headerView.width/2-(headerView.width-100)/2)).isActive = true
+        nameLabel.widthAnchor.constraint(equalToConstant: headerView.width-100).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        let emailLabel = UILabel()
+        emailLabel.textAlignment = .center
+        emailLabel.translatesAutoresizingMaskIntoConstraints = false
+        emailLabel.font = .systemFont(ofSize: 18, weight: .regular)
+        emailLabel.text = data[1].title
+        headerView.addSubview(emailLabel)
+        
+        emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: -15).isActive = true
+        emailLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: (headerView.width/2-(headerView.width-100)/2)).isActive = true
+        emailLabel.widthAnchor.constraint(equalToConstant: headerView.width-100).isActive = true
+        emailLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         return headerView
     }
 }
 
 extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionsData.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return sectionsData[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let viewModel = data[indexPath.row]
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier) as? ProfileTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.identifier, for: indexPath) as? ProfileCell else {
             return UITableViewCell()
         }
-        
-        cell.setUp(with: viewModel)
+        cell.nameLabel.text = sectionsData[indexPath.section][indexPath.row]
         return cell
     }
     
@@ -138,24 +231,12 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         data[indexPath.row].handler?()
     }
-}
-
-class ProfileTableViewCell: UITableViewCell {
     
-    static let identifier = "ProfileTableViewCell"
-    
-    public func setUp(with viewModel: ProfileViewModel) {
-        self.textLabel?.text = viewModel.title
-        switch viewModel.viewModelType {
-        case .info:
-            textLabel?.textAlignment = .left
-            selectionStyle = .none
-            
-        case .logout:
-            textLabel?.textColor = .red
-            textLabel?.textAlignment = .center
-        }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return " "
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
 }

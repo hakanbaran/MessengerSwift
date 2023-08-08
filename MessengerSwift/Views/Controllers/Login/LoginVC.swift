@@ -25,7 +25,7 @@ final class LoginVC: UIViewController {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "messenger")
+        imageView.image = UIImage(named: "TTM")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -146,10 +146,10 @@ final class LoginVC: UIViewController {
         
         
         
-        let size = scrollView.width/3
+        let size = scrollView.width/1.5
         imageView.frame = CGRect(x: (scrollView.width-size)/2, y: scrollView.safeAreaInsets.top-40, width: size, height: size)
         
-        emailField.frame = CGRect(x: 30, y: imageView.bottom+60, width: scrollView.width-60, height: 40)
+        emailField.frame = CGRect(x: 30, y: imageView.bottom, width: scrollView.width-60, height: 40)
         
         passwordField.frame = CGRect(x: 30, y: emailField.bottom+20, width: scrollView.width-60, height: 40)
         

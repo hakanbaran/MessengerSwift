@@ -21,14 +21,12 @@ struct Message: MessageType {
     public var kind: MessageKind
 }
 
-
-
-
-
 class ChatVC: MessagesViewController {
     
     private var senderPhotoURL: URL?
     private var otherUserPhotoURL: URL?
+    
+    
     
     public static let dateFormatter: DateFormatter = {
         let formattre = DateFormatter()
@@ -37,6 +35,7 @@ class ChatVC: MessagesViewController {
         formattre.locale = .current
         return formattre
     }()
+    
     
     
     public var otherUserEmail = String()
@@ -67,8 +66,6 @@ class ChatVC: MessagesViewController {
         self.conversationID = id ?? ""
         
         super.init(nibName: nil, bundle: nil)
-        
-
     }
     
     required init?(coder: NSCoder) {
@@ -87,6 +84,11 @@ class ChatVC: MessagesViewController {
         messageInputBar.delegate = self
         
         setupInputButton()
+        
+        
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,6 +96,49 @@ class ChatVC: MessagesViewController {
         messageInputBar.inputTextView.becomeFirstResponder()
         
         listenForMessages(id: conversationID, shouldScrollToBottom: true)
+        
+        configureOtherUserNavBarPicture()
+        
+        
+        
+    }
+    
+    
+    private func configureOtherUserNavBarPicture() {
+        
+        let imageView = UIImageView(image: UIImage(named: "play"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 20
+        imageView.layer.borderWidth = 2
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.frame = titleView.bounds
+        titleView.addSubview(imageView)
+        
+        // Fetch URL
+        
+        let email = self.otherUserEmail
+        
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+        let path = "images/\(safeEmail)_profile_picture.png"
+        // Fetch URL
+        
+        
+        StorageManager.shared.downloadURL(for: path) { [weak self] result in
+            switch result {
+            case .success(let url):
+                self?.otherUserPhotoURL = url
+                DispatchQueue.main.async {
+                    imageView.sd_setImage(with: url)
+                }
+            case .failure(let error):
+                print("222222\(error)")
+            }
+        }
+        
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: titleView)
+        
     }
     
     
@@ -553,6 +598,7 @@ extension ChatVC: MessageCellDelegate {
         
         
     }
+    
     
     func didTapImage(in cell: MessageCollectionViewCell) {
         guard let indexPath = messagesCollectionView.indexPath(for: cell) else {

@@ -16,13 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="messenger" translatesAutoresizingMaskIntoConstraints="NO" id="YjT-9l-szT">
-                                <rect key="frame" x="98" y="347" width="197" height="158"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="TTM" translatesAutoresizingMaskIntoConstraints="NO" id="YjT-9l-szT">
+                                <rect key="frame" x="77" y="331" width="239" height="191"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YjT-9l-szT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="K3f-pe-es7"/>
+                            <constraint firstItem="YjT-9l-szT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="272" id="bvd-lf-hO0"/>
+                            <constraint firstItem="YjT-9l-szT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="77" id="c2g-sq-kbA"/>
+                            <constraint firstItem="YjT-9l-szT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zzp-ad-ham"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -31,7 +36,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="messenger" width="512" height="512"/>
+        <image name="TTM" width="551" height="313"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

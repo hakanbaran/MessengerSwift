@@ -12,12 +12,6 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ConversationsVC" customModule="MessengerSwift" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
                     <navigationItem key="navigationItem" title="Chats" id="YcW-B3-YDi"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -51,27 +45,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lI2-fa-VoQ">
-                                <rect key="frame" x="0.0" y="155" width="393" height="614"/>
+                                <rect key="frame" x="0.0" y="155" width="393" height="530"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JF8-HB-mTR">
+                                <rect key="frame" x="130" y="700" width="133" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="xjR-d3-f13"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Log out">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
+                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eBE-Ac-Ysb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="lI2-fa-VoQ" firstAttribute="top" secondItem="eBE-Ac-Ysb" secondAttribute="top" id="0fB-VW-QUD"/>
-                            <constraint firstItem="eBE-Ac-Ysb" firstAttribute="bottom" secondItem="lI2-fa-VoQ" secondAttribute="bottom" id="7dV-Jm-iyg"/>
-                            <constraint firstItem="lI2-fa-VoQ" firstAttribute="leading" secondItem="eBE-Ac-Ysb" secondAttribute="leading" id="L4w-Pb-G5h"/>
-                            <constraint firstItem="eBE-Ac-Ysb" firstAttribute="trailing" secondItem="lI2-fa-VoQ" secondAttribute="trailing" id="hHJ-se-zwg"/>
+                            <constraint firstItem="lI2-fa-VoQ" firstAttribute="centerX" secondItem="QNx-tM-Nkk" secondAttribute="centerX" id="SPY-8t-gh8"/>
+                            <constraint firstItem="JF8-HB-mTR" firstAttribute="top" secondItem="lI2-fa-VoQ" secondAttribute="bottom" constant="15" id="Sd9-OQ-R4s"/>
+                            <constraint firstItem="eBE-Ac-Ysb" firstAttribute="bottom" secondItem="JF8-HB-mTR" secondAttribute="bottom" constant="17" id="bTL-cp-v4K"/>
+                            <constraint firstItem="lI2-fa-VoQ" firstAttribute="leading" secondItem="eBE-Ac-Ysb" secondAttribute="leading" id="n6F-dK-Mdq"/>
+                            <constraint firstItem="JF8-HB-mTR" firstAttribute="leading" secondItem="eBE-Ac-Ysb" secondAttribute="leading" constant="130" id="pTE-di-dSC"/>
+                            <constraint firstItem="lI2-fa-VoQ" firstAttribute="top" secondItem="eBE-Ac-Ysb" secondAttribute="top" id="r8v-QD-HiD"/>
+                            <constraint firstItem="lI2-fa-VoQ" firstAttribute="centerX" secondItem="JF8-HB-mTR" secondAttribute="centerX" id="xSy-Ii-kP1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="HBt-bX-Bqz"/>
                     <connections>
+                        <outlet property="logOutButton" destination="JF8-HB-mTR" id="6Vj-ou-szz"/>
                         <outlet property="tableView" destination="lI2-fa-VoQ" id="RRW-4A-DGJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F8T-jX-hlv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1384" y="768"/>
+            <point key="canvasLocation" x="1382.4427480916031" y="767.6056338028169"/>
         </scene>
         <!--Profile-->
         <scene sceneID="mO9-MZ-9ah">
@@ -115,6 +124,9 @@
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
